@@ -54,6 +54,7 @@ import {
   fetchTokenReportSummary,
   fetchTokenDetailedReport,
   OrderParams,
+  tradeBanger,
 } from "../tools";
 
 import {
@@ -252,6 +253,10 @@ export class SolanaAgentKit {
 
   async stake(amount: number): Promise<string> {
     return stakeWithJup(this, amount);
+  }
+
+  async tradeBanger(type: string, tweetId: string, amountInTokens?: number, amountInSOL?: number, slippageBps?: number) {
+    return tradeBanger(this, type, tweetId, amountInTokens, amountInSOL, slippageBps);
   }
 
   async sendCompressedAirdrop(

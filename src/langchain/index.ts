@@ -1980,6 +1980,47 @@ export class SolanaFetchTokenDetailedReportTool extends Tool {
   }
 }
 
+export class SolanaBangerTradeTool extends Tool {
+  name = "solana_banger_trade";
+  description = `Trades tweet tokens on Banger.
+  Inputs (input is a JSON string):
+  - type: string, the type of trade, "buy" or "sell" (required)
+  - tweetId: string, the tweet id to trade, e.g., "20" (required)
+  - amountInTokens: number, the amount of tokens to trade, e.g., 10000
+  - amountInSOL: number, the amount of SOL to trade, e.g., 0.01
+  - slippageBps: number, the slippage in basis points, e.g., 100 (defaults to 5)
+  `;
+
+  constructor(private solanaKit: SolanaAgentKit) {
+    super();
+  }
+
+  protected async _call(input: string): Promise<string> {
+    try {
+      const parsedInput = JSON.parse(input);
+      const result = await this.solanaKit.tradeBanger(
+        parsedInput.type,
+        parsedInput.tweetId,
+        parsedInput.amountInTokens,
+        parsedInput.amountInSOL,
+        parsedInput.slippageBps,
+      );
+      return JSON.stringify({
+        status: "success",
+        message: "Succesfully traded Bangers",
+        data: result,
+      });
+    } catch (error: any) {
+      return JSON.stringify({
+        status: "error",
+        message: error.message,
+        code: error.code || "UNKNOWN_ERROR",
+      });
+    }
+  }
+}
+
+
 export function createSolanaTools(solanaKit: SolanaAgentKit) {
   return [
     new SolanaBalanceTool(solanaKit),
@@ -2031,5 +2072,6 @@ export function createSolanaTools(solanaKit: SolanaAgentKit) {
     new SolanaCancelNFTListingTool(solanaKit),
     new SolanaFetchTokenReportSummaryTool(solanaKit),
     new SolanaFetchTokenDetailedReportTool(solanaKit),
+    new SolanaBangerTradeTool(solanaKit),
   ];
 }

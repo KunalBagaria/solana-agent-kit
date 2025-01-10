@@ -5,9 +5,9 @@ import { SolanaAgentKit } from "../index";
  * @param agent - SolanaAgentKit instance
  * @param type - "buy" or "sell"
  * @param tweetId - The tweet id to trade
- * @param amountInTokens - The amount of tokens to trade if type is sell
- * @param amountInSOL - The amount of SOL to trade if type is buy
- * @param slippageBps - The slippage in basis points
+ * @param amountInTokens - The amount of tokens to trade if type is sell (optional)
+ * @param amountInSOL - The amount of SOL to trade if type is buy (optional)
+ * @param slippageBps - The slippage in basis points (optional, defaults to 5)
  *
  * @returns Promise resolving to the result of the trade
  */

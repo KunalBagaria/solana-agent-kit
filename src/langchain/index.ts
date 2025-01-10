@@ -1980,15 +1980,15 @@ export class SolanaFetchTokenDetailedReportTool extends Tool {
   }
 }
 
-export class SolanaBangerTradeTool extends Tool {
-  name = "solana_banger_trade";
+export class SolanaTradeBangerTool extends Tool {
+  name = "solana_trade_banger";
   description = `Trades tweet tokens on Banger.
   Inputs (input is a JSON string):
-  - type: string, the type of trade, "buy" or "sell" (required)
-  - tweetId: string, the tweet id to trade, e.g., "20" (required)
-  - amountInTokens: number, the amount of tokens to trade, e.g., 10000
-  - amountInSOL: number, the amount of SOL to trade, e.g., 0.01
-  - slippageBps: number, the slippage in basis points, e.g., 100 (defaults to 5)
+  type: string, the type of trade, "buy" or "sell" (required)
+  tweetId: string, the tweet id to trade (required)
+  amountInTokens: number, the amount of tokens to trade (optional)
+  amountInSOL: number, the amount of SOL to trade (optional)
+  slippageBps: number, the slippage in basis points (optional, defaults to 5)
   `;
 
   constructor(private solanaKit: SolanaAgentKit) {
@@ -2072,6 +2072,6 @@ export function createSolanaTools(solanaKit: SolanaAgentKit) {
     new SolanaCancelNFTListingTool(solanaKit),
     new SolanaFetchTokenReportSummaryTool(solanaKit),
     new SolanaFetchTokenDetailedReportTool(solanaKit),
-    new SolanaBangerTradeTool(solanaKit),
+    new SolanaTradeBangerTool(solanaKit),
   ];
 }

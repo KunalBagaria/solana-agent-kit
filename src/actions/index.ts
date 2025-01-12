@@ -1,32 +1,35 @@
-import deployTokenAction from "./deployToken";
-import balanceAction from "./balance";
-import transferAction from "./transfer";
-import deployCollectionAction from "./deployCollection";
-import mintNFTAction from "./mintNFT";
-import tradeAction from "./trade";
-import requestFundsAction from "./requestFunds";
-import resolveDomainAction from "./resolveDomain";
-import getTokenDataAction from "./getTokenData";
-import getTPSAction from "./getTPS";
-import fetchPriceAction from "./fetchPrice";
-import stakeWithJupAction from "./stakeWithJup";
-import registerDomainAction from "./registerDomain";
-import lendAssetAction from "./lendAsset";
-import createGibworkTaskAction from "./createGibworkTask";
-import resolveSolDomainAction from "./resolveSolDomain";
-import pythFetchPriceAction from "./pythFetchPrice";
-import getOwnedDomainsForTLDAction from "./getOwnedDomainsForTLD";
-import getPrimaryDomainAction from "./getPrimaryDomain";
-import getAllDomainsTLDsAction from "./getAllDomainsTLDs";
-import getOwnedAllDomainsAction from "./getOwnedAllDomains";
-import createImageAction from "./createImage";
-import getMainAllDomainsDomainAction from "./getMainAllDomainsDomain";
-import getAllRegisteredAllDomainsAction from "./getAllRegisteredAllDomains";
-import raydiumCreateCpmmAction from "./raydiumCreateCpmm";
-import raydiumCreateAmmV4Action from "./raydiumCreateAmmV4";
-import createOrcaSingleSidedWhirlpoolAction from "./createOrcaSingleSidedWhirlpool";
-import launchPumpfunTokenAction from "./launchPumpfunToken";
-import getWalletAddressAction from "./getWalletAddress";
+import deployTokenAction from "./metaplex/deployToken";
+import balanceAction from "./solana/balance";
+import transferAction from "./solana/transfer";
+import deployCollectionAction from "./metaplex/deployCollection";
+import mintNFTAction from "./metaplex/mintNFT";
+import tradeAction from "./jupiter/trade";
+import requestFundsAction from "./solana/requestFunds";
+import resolveDomainAction from "./sns/registerDomain";
+import getTokenDataAction from "./jupiter/getTokenData";
+import getTPSAction from "./solana/getTPS";
+import fetchPriceAction from "./jupiter/fetchPrice";
+import stakeWithJupAction from "./jupiter/stakeWithJup";
+import stakeWithSolayerAction from "./solayer/stakeWithSolayer";
+import registerDomainAction from "./sns/registerDomain";
+import lendAssetAction from "./lulo/lendAsset";
+import createGibworkTaskAction from "./gibwork/createGibworkTask";
+import resolveSolDomainAction from "./sns/resolveSolDomain";
+import pythFetchPriceAction from "./pyth/pythFetchPrice";
+import getOwnedDomainsForTLDAction from "./alldomains/getOwnedDomainsForTLD";
+import getPrimaryDomainAction from "./sns/getPrimaryDomain";
+import getAllDomainsTLDsAction from "./alldomains/getAllDomainsTLDs";
+import getOwnedAllDomainsAction from "./alldomains/getOwnedAllDomains";
+import createImageAction from "./agent/createImage";
+import getMainAllDomainsDomainAction from "./sns/getMainAllDomainsDomain";
+import getAllRegisteredAllDomainsAction from "./sns/getAllRegisteredAllDomains";
+import raydiumCreateCpmmAction from "./raydium/raydiumCreateCpmm";
+import raydiumCreateAmmV4Action from "./raydium/raydiumCreateAmmV4";
+import createOrcaSingleSidedWhirlpoolAction from "./orca/createOrcaSingleSidedWhirlpool";
+import launchPumpfunTokenAction from "./pumpfun/launchPumpfunToken";
+import getWalletAddressAction from "./agent/getWalletAddress";
+import flashOpenTradeAction from "./flash/flashOpenTrade";
+import flashCloseTradeAction from "./flash/flashCloseTrade";
 import tradeBangerAction from "./tradeBangers";
 
 export const ACTIONS = {
@@ -43,6 +46,7 @@ export const ACTIONS = {
   GET_TPS_ACTION: getTPSAction,
   FETCH_PRICE_ACTION: fetchPriceAction,
   STAKE_WITH_JUP_ACTION: stakeWithJupAction,
+  STAKE_WITH_SOLAYER_ACTION: stakeWithSolayerAction,
   REGISTER_DOMAIN_ACTION: registerDomainAction,
   LEND_ASSET_ACTION: lendAssetAction,
   CREATE_GIBWORK_TASK_ACTION: createGibworkTaskAction,
@@ -61,6 +65,8 @@ export const ACTIONS = {
     createOrcaSingleSidedWhirlpoolAction,
   LAUNCH_PUMPFUN_TOKEN_ACTION: launchPumpfunTokenAction,
   TRADE_BANGER_ACTION: tradeBangerAction,
+  FLASH_OPEN_TRADE_ACTION: flashOpenTradeAction,
+  FLASH_CLOSE_TRADE_ACTION: flashCloseTradeAction,
 };
 
 export type { Action, ActionExample, Handler } from "../types/action";

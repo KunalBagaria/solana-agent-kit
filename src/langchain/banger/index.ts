@@ -3,14 +3,13 @@ import { SolanaAgentKit } from "../../agent";
 
 export class SolanaTradeBangerTool extends Tool {
   name = "solana_trade_banger";
-  description = `Trades tweet tokens on Banger.
-  Inputs (input is a JSON string):
-  type: string, the type of trade, "buy" or "sell" (required)
-  tweetId: string, the tweet id to trade (required)
-  amountInTokens: number, the amount of tokens to trade (optional)
-  amountInSOL: number, the amount of SOL to trade (optional)
-  slippageBps: number, the slippage in basis points (optional, defaults to 5)
-  `;
+  description = `This tool can be used to trade tweet tokens on Banger (banger.xyz).
+
+  Inputs ( input is a JSON string ):
+  type: string, eg "buy" or "sell" (required)
+  tweetId: string, eg "5", "10", "20" (required)
+  amount: number, eg 5, 10, 20 (optional)
+  slippageBps: number, eg 5, 10, 20 (optional)`
 
   constructor(private solanaKit: SolanaAgentKit) {
     super();
@@ -18,12 +17,12 @@ export class SolanaTradeBangerTool extends Tool {
 
   protected async _call(input: string): Promise<string> {
     try {
+      console.log("input", input);
       const parsedInput = JSON.parse(input);
       const result = await this.solanaKit.tradeBanger(
         parsedInput.type,
         parsedInput.tweetId,
-        parsedInput.amountInTokens,
-        parsedInput.amountInSOL,
+        parsedInput.amount,
         parsedInput.slippageBps,
       );
       return JSON.stringify({

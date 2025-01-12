@@ -321,8 +321,8 @@ export class SolanaAgentKit {
     return stakeWithSolayer(this, amount);
   }
 
-  async tradeBanger(type: string, tweetId: string, amountInTokens?: number, amountInSOL?: number, slippageBps?: number) {
-    return tradeBanger(this, type, tweetId, amountInTokens, amountInSOL, slippageBps);
+  async tradeBanger(type: string, tweetId: string, amount: number, slippageBps?: number) {
+    return tradeBanger(this, type, tweetId, amount, slippageBps);
   }
 
   async sendCompressedAirdrop(

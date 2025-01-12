@@ -5,8 +5,7 @@ import { SolanaAgentKit } from "../../agent";
  * @param agent - SolanaAgentKit instance
  * @param type - "buy" or "sell"
  * @param tweetId - The tweet id to trade
- * @param amountInTokens - The amount of tokens to trade if type is sell (optional)
- * @param amountInSOL - The amount of SOL to trade if type is buy (optional)
+ * @param amount - The amount of tokens to trade
  * @param slippageBps - The slippage in basis points (optional, defaults to 5)
  *
  * @returns Promise resolving to the result of the trade
@@ -15,12 +14,11 @@ export async function tradeBanger(
   agent: SolanaAgentKit,
   type: string,
   tweetId: string,
-  amountInTokens?: number,
-  amountInSOL?: number,
+  amount: number,
   slippageBps?: number,
 ) {
   try {
-    if (!amountInTokens && !amountInSOL) {
+    if (!amount) {
       throw new Error("Amount is required");
     }
 
@@ -35,8 +33,8 @@ export async function tradeBanger(
           type,
           tweetId,
           publicKey: agent.wallet_address.toBase58(),
-          amountInTokens,
-          amountInSOL,
+          amountInTokens: type === "sell" ? amount : 0,
+          amountInSOL : type === "buy" ? amount : 0,
           slippageBps,
         }),
       },

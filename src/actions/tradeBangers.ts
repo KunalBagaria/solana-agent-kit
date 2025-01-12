@@ -22,7 +22,7 @@ const tradeBangerAction: Action = {
         input: {
           type: "buy",
           tweetId: "20",
-          amountInSOL: 0.01,
+          amount: 0.01,
         },
         output: {
           status: "success",
@@ -36,7 +36,7 @@ const tradeBangerAction: Action = {
         input: {
           type: "sell",
           tweetId: "20",
-          amountInTokens: 10000,
+          amount: 10000,
           slippageBps: 10,
         },
         output: {
@@ -49,8 +49,7 @@ const tradeBangerAction: Action = {
   ],
   schema: z.object({
     type: z.enum(["buy", "sell"]),
-    amountInSOL: z.number().optional().default(0),
-    amountInTokens: z.number().optional().default(0),
+    amount: z.number().optional().default(0),
     slippage: z.number().optional().default(5),
   }),
   handler: async (agent: SolanaAgentKit, input: Record<string, any>) => {
@@ -58,8 +57,7 @@ const tradeBangerAction: Action = {
       agent,
       input.type,
       input.tweetId,
-      input.amountInTokens,
-      input.amountInSOL,
+      input.amount,
       input.slippage,
     );
     console.log(result);
